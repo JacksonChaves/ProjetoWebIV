@@ -1,6 +1,0 @@
-Microserviços
--Dividimos em dois projetos
--Problemas:
-    -gerenciamento entre projetos
--Vantagem: 
-    -Desacoplar a interface
