@@ -191,7 +191,8 @@ async def filmes_populares(limit=3):
         filtro.append({
             "title": movie['original_title'],
             "image":
-                f"https://image.tmdb.org/t/p/w185{movie['poster_path']}"
+                f"https://image.tmdb.org/t/p/w185{movie['poster_path']}",
+            "id": movie['id']
         })
     return filtro
 
