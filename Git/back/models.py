@@ -14,7 +14,7 @@ class Movier(Base):
     __tablename__ = "movies"
     id = Column(Integer, primary_key=True, index=True)
     tmdb_id= Column(String)
-    title_id=Column(String)
+    title=Column(String)
     #user_id
     is_active = Column(Boolean, default=True)
     
@@ -23,6 +23,6 @@ class Favorito_movie(Base):
     __tablename__ = "favoritos_movies"
     tmdb_id = Column(String, primary_key=True, index=True)
     user_id = Column(String)
-    # title_id=Column(String)
+    title=Column(String)
     # is_active = Column(Boolean, default=True)
     # user = relationship(User="user", back_populates="favorite_movies")r

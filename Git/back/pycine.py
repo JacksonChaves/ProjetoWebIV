@@ -104,21 +104,24 @@ async def delete_user(user_id: int, db: Session = Depends(get_db)):
     deleted_user = crud.delete_user(db, user_id)
     return deleted_user
 
+# Favoritar filme
 @app.post("/favoritos/", response_model=schemas.Favoritos)
 async def favoritar_filme(favorito: schemas.Favoritos, db: Session = Depends(get_db)):
-    existing_favorito = crud.get_favorito_by_tmdb_id(db, favorito.user_id, favorito.tmdb_id)
-    if existing_favorito:
-        raise HTTPException(status_code=400, detail="Movie already favorited by this user")
     return crud.favoritar(db=db, favorito=favorito)
 
-# Favoritar filme
-@app.get("/favoritos/", response_model=schemas.Favoritos)
-async def favoritar_filme(favorito: schemas.Favoritos, db: Session = Depends(get_db)):
-    existing_favorito = crud.get_favorito_by_tmdb_id(db, favorito.user_id, favorito.tmdb_id)
-    if existing_favorito:
-        raise HTTPException(status_code=400, detail="Movie already favorited by this user")
 
-#     return crud.get_favorito_by_tmdb_id(db=db, favorito=favorito)
+@app.get("/favoritos/", response_model=list[schemas.Favoritos])
+async def favoritar_filme(user_id: str, db: Session = Depends(get_db)):
+    return crud.get_favorito_by_tmdb_id(db, user_id)
+
+@app.delete("/favoritos/{tmdb_id}", response_model=schemas.Favoritos)
+async def delete_favorito(tmdb_id: str, db: Session = Depends(get_db)):
+    db_favoritos = crud.get_favorito_by_tmdb_id (db, tmdb_id)
+    if db_favoritos is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    deleted_favorito=crud.delete_favorito(db, tmdb_id)
+    return deleted_favorito
 
 # =========================================================================
 # Atividade 1

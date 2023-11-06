@@ -11,14 +11,13 @@
 	  promise = getFilmes();
 	  }
 
-	  async function favoritarFilme(tmdbId) {
-		console.log("teste", tmdbId)
+	  async function favoritarFilme(tmdbId, title) {
 		const res = await fetch(`http://localhost:8000/favoritos/`, {
 			method: 'POST',
 			headers: {
 			'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ user_id: "1", tmdb_id: tmdbId.toString()})
+			body: JSON.stringify({ user_id: "1", tmdb_id: tmdbId.toString(), title: title})
 		});
 
 		if (res.ok) {
@@ -40,7 +39,7 @@
 	{#each filmes as filme}
 		<p>{filme.title}</p>
 		<img src="{filme.image}" alt="">
-		<button type="button" on:click={() => favoritarFilme(filme.id)}>Adicionar a favoritos</button>
+		<button type="button" on:click={() => favoritarFilme(filme.id, filme.title)}>Adicionar a favoritos</button>
 	{/each}
 	<!-- <p>{filmes.title}</p> -->
   {:catch error}

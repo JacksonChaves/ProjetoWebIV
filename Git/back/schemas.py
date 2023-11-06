@@ -7,7 +7,8 @@ class Movie(BaseModel):
 
 class Favoritos(BaseModel):
     user_id: str
-    tmdb_id: str 
+    tmdb_id: str
+    title: str
     # title: str
 
 class UserBase(BaseModel):

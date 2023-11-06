@@ -79,6 +79,7 @@ def filmes_populares():
 
     print(f"Total: {len(results)}")
     
+    
 if __name__ == "__main__":
     filmes_populares()
 

@@ -12,6 +12,7 @@
 	  function handleClick() {
 		promise = getUsers();
 	  }
+	  
 	  async function deleteUser(e) {
 		e.preventDefault();
 		const userId = e.target.elements.id.value;
