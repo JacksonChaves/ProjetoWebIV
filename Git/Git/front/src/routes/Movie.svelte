@@ -21,9 +21,9 @@
 		});
 
 		if (res.ok) {
-			console.log('Filme adicionado aos favoritos com sucesso!');
+			alert('Filme adicionado aos favoritos com sucesso!');
 		} else {
-			console.error('Erro ao adicionar filme aos favoritos.');
+			alert('Erro ao adicionar filme aos favoritos.');
 		}
 	 }
 	  
