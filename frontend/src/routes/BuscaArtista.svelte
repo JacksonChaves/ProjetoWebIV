@@ -40,7 +40,7 @@
     if (res.ok) {
 			alert('Artista adicionado aos favoritos com sucesso!');
 		} else {
-			alert('Erro ao adicionar artista aos favoritos.');
+			alert('Este artista já está favoritado.');
 		}
 	}
 
@@ -52,6 +52,10 @@
         <p>ID: {artista.id}</p>
         <p>Nome do Artista: {artista.name}</p>
         <p>Rank: {artista.rank}</p>
+        <img src="{artista.image}" alt="">
+        <p>Biografia em Inglês: {artista.biography}</p>
+        
+        <p>Data de Nascimento: {artista.birthday}</p>
         <button type="button" on:click={() => favoritarArtista(artista.id, artista.name, artista.rank)}>Adicionar a favoritos</button>
 
         <br>

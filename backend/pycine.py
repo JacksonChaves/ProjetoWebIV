@@ -35,12 +35,20 @@ async def get_artista(name: str):
     
     results = data['results']
     filtro = []
-
+    from pprint import pprint
+    
     for artist in results:
+        data2 = get_json("/person/" f"{artist['id']}?")
         filtro.append({
             'id': artist['id'],
             'name': artist['name'],
-            'rank':artist['popularity']
+            'rank':artist['popularity'],
+            'biography': data2['biography'],
+            'birthday': data2['birthday'],
+            "image":
+                f"https://image.tmdb.org/t/p/w185{artist['profile_path']}"
+            ''
+            
         })
     # ordenar filtro pelo atributo rank
     filtro.sort(reverse=True, key=lambda artist:artist['rank'])
@@ -138,6 +146,7 @@ async def find_movie(title: str):
     
 
     for title in results:
+        
         filtro.append({
             'title': title['title'],
             'rank':title['popularity'],
@@ -145,6 +154,8 @@ async def find_movie(title: str):
             "image":
                 f"https://image.tmdb.org/t/p/w185{title['poster_path']}",
             }
+            
+    
         )
 
     filtro.sort(reverse = True, key=lambda title:title['rank'])
@@ -237,5 +248,5 @@ async def delete_artista(tmdb_id: str, db: Session = Depends(get_db)):
     return deleted_favorito
 
 
-if __name__ == "__main__":
+if __name__ == "_main_":
     uvicorn.run("pycine:app", host="127.0.0.1", port=8000, reload=True)
