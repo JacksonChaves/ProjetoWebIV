@@ -15,6 +15,7 @@ class Artistas(BaseModel):
     tmdb_id: str
     name: str
     rank: str
+    user_id: str
 
 class UserBase(BaseModel):
     name: str

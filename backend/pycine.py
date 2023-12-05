@@ -39,6 +39,7 @@ async def get_artista(name: str):
     
     for artist in results:
         data2 = get_json("/person/" f"{artist['id']}?")
+        pprint(data2)
         filtro.append({
             'id': artist['id'],
             'name': artist['name'],
@@ -248,5 +249,5 @@ async def delete_artista(tmdb_id: str, db: Session = Depends(get_db)):
     return deleted_favorito
 
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     uvicorn.run("pycine:app", host="127.0.0.1", port=8000, reload=True)

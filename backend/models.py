@@ -32,3 +32,4 @@ class Artistas(Base):
     tmdb_id = Column (String, primary_key = True, index = True)
     name = Column(String)
     rank = Column(String)
+    user_id = Column(String)

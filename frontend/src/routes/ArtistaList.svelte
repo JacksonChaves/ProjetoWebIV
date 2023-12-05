@@ -46,6 +46,7 @@
   <h1>Lista de Artistas</h1>
   {#each artistas as artista}
       <p>ID: {artista.tmdb_id} - Nome: {artista.name} - Rank: {artista.rank}</p>
+      <img src="{artista.image}" alt="">
       
       <form on:submit|preventDefault={deleteArtista}>
         <input type="hidden" name="name" value="{artista.name}">
